@@ -3,7 +3,7 @@
 int main(void)
 {
     long x, y;
-    float z;
+    double z;
 
     printf("x: ");
     scanf("%li", &x);
@@ -11,6 +11,6 @@ int main(void)
     printf("y: ");
     scanf("%li", &y);
 
-    z = (float) x / (float) y;
-    printf("%f\n", z);
+    z = (double) x / (double) y;
+    printf("%.20f\n", z);
 }

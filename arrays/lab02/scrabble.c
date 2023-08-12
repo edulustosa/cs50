@@ -18,7 +18,7 @@ int get_word(void)
     for (int i = 0, n = strlen(word); i < n; i++)
     {
         word[i] = toupper(word[i]);
-        if (word[i] >= 65 && word[1] <= 90)
+        if (word[i] >= 65 && word[i] <= 90)
         {
             for (int j = 0; j < 26; j++)
             {

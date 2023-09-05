@@ -2,14 +2,14 @@
 #include <string.h>
 #include <ctype.h>
 
-int points[] = {1, 3, 3, 2, 1,4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+int POINTS[] = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
 
 int get_word(void)
 {
     int sum = 0;
     char alfabet[26], word[100];
 
-    for (int i = 0; i < 26; i++) 
+    for (int i = 0; i < 26; i++)
     {
         alfabet[i] = 'A' + i;
     }
@@ -24,7 +24,7 @@ int get_word(void)
             {
                 if (word[i] == alfabet[j])
                 {
-                    sum += points[j];
+                    sum += POINTS[j];
                 }
             }
         }

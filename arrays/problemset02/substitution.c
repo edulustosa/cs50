@@ -1,8 +1,8 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 
-int main(int argc, char *argv[]) 
+int main(int argc, char *argv[])
 {
     if (argc < 2 || argc > 2)
     {
@@ -27,29 +27,29 @@ int main(int argc, char *argv[])
                 return 1;
             }
 
-            if (!(argv[1][i] >= 65 && argv[1][i] <= 90)) 
+            if (!(argv[1][i] >= 65 && argv[1][i] <= 90))
             {
                 printf("Key must only contain alphabetic characters.\n");
-                return 1; 
+                return 1;
             }
         }
     }
 
     char alfabet_upper[26], alfabet_lower[26], key_upper[26], key_lower[26];
 
-    for (int i = 0; i < 26; i++) 
+    for (int i = 0; i < 26; i++)
     {
         alfabet_upper[i] = 'A' + i;
         alfabet_lower[i] = 'a' + i;
     }
 
-    for (int i = 0; i < 26; i++) 
+    for (int i = 0; i < 26; i++)
     {
         key_lower[i] = tolower(argv[1][i]);
         key_upper[i] = toupper(argv[1][i]);
     }
 
-    char text[100];    
+    char text[100];
     printf("plaintext: ");
     fgets(text, sizeof(text), stdin);
 

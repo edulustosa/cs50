@@ -38,22 +38,17 @@ int binary_search(int arr[], int n, int alvo)
             direita = meio - 1;
         }
     }
-    
+
     return -1;
 }
 
 int main(void)
 {
-    int arr[] = 
-    {
-        12, 5, 1, 0, 22,
-        14, 6, 3, 9, 17,
-        11, 10, 8, 27, 32
-    };
+    int arr[] = {12, 5, 1, 0, 22, 14, 6, 3, 9, 17, 11, 10, 8, 27, 32};
     int tamanho = sizeof(arr) / sizeof(arr[0]);
 
     printf("Array original: ");
-    for (int i = 0; i < tamanho; i++) 
+    for (int i = 0; i < tamanho; i++)
     {
         printf("%d ", arr[i]);
     }
@@ -62,7 +57,7 @@ int main(void)
     selection_sort(arr, tamanho);
 
     printf("Array ordenado: ");
-    for (int i = 0; i < tamanho; i++) 
+    for (int i = 0; i < tamanho; i++)
     {
         printf("%d ", arr[i]);
     }
@@ -74,11 +69,11 @@ int main(void)
 
     int resultado = binary_search(arr, tamanho, alvo);
 
-    if (resultado != -1) 
+    if (resultado != -1)
     {
         printf("Encontrou o numero %d na posicao %d.\n", alvo, resultado);
-    } 
-    else 
+    }
+    else
     {
         printf("Numero %d nao encontrado.\n", alvo);
     }

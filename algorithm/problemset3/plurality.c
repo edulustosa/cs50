@@ -4,14 +4,13 @@
 
 #define MAX 9
 
-typedef struct 
+typedef struct
 {
     char name[10];
     int votes;
-}
-candidate;
+} Candidate;
 
-candidate candidates[MAX];
+Candidate candidates[MAX];
 int candidate_count;
 
 bool vote(char *name)
@@ -38,7 +37,7 @@ void print_winner(void)
             max_votes = candidates[i].votes;
         }
     }
-        
+
     for (int i = 0; i < candidate_count; i++)
     {
         if (candidates[i].votes == max_votes)
@@ -48,7 +47,7 @@ void print_winner(void)
     }
 }
 
-int main(int argc, char *argv[]) 
+int main(int argc, char *argv[])
 {
     int voters;
     char name[20];
@@ -64,7 +63,7 @@ int main(int argc, char *argv[])
 
     printf("Number of voters: ");
     scanf("%d", &voters);
-    
+
     for (int i = 0; i < voters; i++)
     {
         printf("Vote: ");

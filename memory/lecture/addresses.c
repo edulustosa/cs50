@@ -2,11 +2,10 @@
 
 int main(void)
 {
-    int n = 50;
-    int *ptr = &n;
-    *ptr = 49;
-    printf("%d", *ptr);
-    printf("%d", n);
+    char s[] = "HI!";
+    printf("%s\n", s);
+    printf("%s\n", s + 1);
+    printf("%s\n", s + 2);
 
     return 0;
 }

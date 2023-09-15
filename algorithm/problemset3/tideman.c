@@ -27,54 +27,19 @@ int candidate_count;
 // Print the winner of the election
 void print_winner(void)
 {
-    for (int i = 0; i < candidate_count; i++)
-    {
-        bool is_banana = true;
-
-        for (int j = 0; j < candidate_count; j++)
-        {
-            if (locked[j][i])
-            {
-                is_banana = false;
-                break;
-            }
-
-            if (is_banana)
-            {
-                printf("%s\n", candidates[i]);
-                return;
-            }
-        }
-    }
 
     return;
 }
 
-bool is_cycle(int winner, int loser)
-{
-    if (locked[loser][winner])
-        return true;
-
-    for (int i = 0; i < candidate_count; i++)
-    {
-        if (locked[loser][i] && is_cycle(winner, i))
-            return true;
-    }
-}
-
 // Lock pairs into the candidate graph in order, without creating cycles
-// This function was very difficult so I looked at some tutorials
+// This function was very difficult so I couldn't fully solve it
 void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
         int winner = pairs[i].winner;
         int loser = pairs[i].loser;
-
-        if (!is_cycle(winner, loser))
-        {
-            locked[winner][loser] = true;
-        }
+        locked[winner][loser] = true;
     }
 
     return;

@@ -1,9 +1,7 @@
-x = int(input("x: "))
-y = int(input("y: "))
+s = input("n: ")
+t = input("y: ")
 
-if x < y:
-    print("x is less than y")
-elif y < x:
-    print("y is less than x")
+if s == t:
+    print("Same")
 else:
-    print("x is equal to y")
+    print("Different")

@@ -1,0 +1,9 @@
+Spotify Wrapped is a feature presenting Spotify users’ 100 most played songs from the past year. In 2021, Spotify Wrapped calculated an “Audio Aura” for each user, a “reading of [their] two most prominent moods as dictated by [their] top songs and artists of the year.” Suppose Spotify determines an audio aura by looking at the average energy, valence, and danceability of a person’s top 100 songs from the past year. In answers.txt, reflect on the following questions:
+
+If songs.db contains the top 100 songs of one listener from 2018, how would you characterize their audio aura?
+
+If songs.db contains the top 100 songs of one listener from 2018, you would characterize their audio aura as an average representation of the energy, valence, and danceability of those songs.
+
+Hypothesize about why the way you’ve calculated this aura might not be very representative of the listener. What better ways of calculating this aura would you propose?
+
+A better way to calculate this aura might be to consider a more granular analysis of the listener's music over the year, accounting for evolving preferences and genre diversity, while also incorporating subjective elements such as lyrics and personal associations with the songs.

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+    <title>Trivia!</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Trivia!</h1>
+    </div>
+
+    <div class="container">
+      <div class="section">
+        <h2>Part 1: Multiple Choice</h2>
+        <hr />
+        <h3>
+          Which scientist is renowned for their fundamental contributions to the
+          theory of relativity and the famous equation E=mc²?
+        </h3>
+        <p class="incorrect"></p>
+        <button>Isaac Newton</button>
+        <button>Galileo Galilei</button>
+        <button>Charles Darwin</button>
+        <button class="correct">Albert Einstein</button>
+        <button>Marie Curie</button>
+      </div>
+
+      <div class="section">
+        <h2>Part 2: Free Response</h2>
+        <hr />
+        <h3>What is the closest planet to the Sun?</h3>
+        <p class="free-incorrect"></p>
+        <form>
+          <input
+            type="text"
+            autocomplete="off"
+            required
+            class="free-response"
+          />
+          <input type="submit" value="Check Answer" class="submit-free" />
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll("button");
+      const answer = document.querySelector(".incorrect");
+      const freeAnswer = document.querySelector(".free-incorrect");
+      const form = document.querySelector("form");
+      const textField = document.querySelector(".free-response");
+      let isCorrect = false;
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          if (!isCorrect) {
+            if (button.classList.contains("correct")) {
+              button.style.backgroundColor = "green";
+              button.style.color = "white";
+              answer.innerText = "";
+              answer.innerText = "Correct!";
+              isCorrect = true;
+            } else {
+              answer.innerText = "Incorrect";
+              button.style.backgroundColor = "red";
+              button.style.color = "white";
+            }
+          }
+        });
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        let response = document.querySelector(".free-response").value;
+        response = response.toLowerCase();
+
+        if (response === "mercury") {
+          freeAnswer.innerText = "Correct!";
+          textField.style.backgroundColor = "green";
+          textField.style.color = "white";
+        } else {
+          freeAnswer.innerText = "Incorrect";
+          textField.style.backgroundColor = "red";
+          textField.style.color = "white";
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -5,3 +5,33 @@
 .p-3 {
   padding: 0.5rem!important;
 }
+
+.chat-container {
+  height: 75vh;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.chat-messages {
+  margin-bottom: 10px;
+  overflow-y: auto;
+  height: 90%;
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-send-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1400px){
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 800px;
+  }
+}

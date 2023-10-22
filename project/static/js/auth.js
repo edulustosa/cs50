@@ -1,5 +1,5 @@
 const form = document.querySelector("form");
-
+  
 form.addEventListener("submit", (event) => {
   // Ensures that inputs have values
   const inputs = document.querySelectorAll(".form-control");

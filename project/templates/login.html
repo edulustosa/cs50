@@ -16,3 +16,7 @@
     <button class="btn btn-primary" type="submit">Log In</button>
   </form>
 {% endblock %}
+
+{% block script %} 
+  <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+{% endblock %}

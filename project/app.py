@@ -11,6 +11,7 @@ from flask import (
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
+from flask_socketio import SocketIO, emit
 
 import database
 
@@ -18,6 +19,7 @@ app = Flask(__name__)
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+socketio = SocketIO(app)
 Session(app)
 
 
@@ -52,6 +54,11 @@ def index():
     return render_template("index.html")
 
 
+@socketio.on("connect")
+def handle_connect():
+    print("Client connected!")
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
@@ -82,6 +89,7 @@ def login():
 
         # Remember which user has logged in
         session["user_id"] = rows[0][0]
+        session["username"] = rows[0][1]
 
         # Redirect user to home page
         return redirect("/")
@@ -111,11 +119,11 @@ def register():
 
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
-        # Get user information
         username = request.form.get("username")
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
 
+        # Check user information
         if not username:
             flash("Must provide a username")
             return render_template("register.html", alert="danger")
@@ -129,11 +137,13 @@ def register():
             flash("Password do not match")
             return render_template("register.html", alert="danger")
 
+        # Query database for username and ensure that the username does not exist
         rows = database.get_data("SELECT * FROM users WHERE username = ?", (username,))
         if len(rows) != 0:
             flash("Username already exists")
             return render_template("register.html", alert="danger")
 
+        # Insert user and password into database
         database.commit(
             "INSERT INTO users (username, hash) VALUES (?, ?)",
             (
@@ -141,14 +151,24 @@ def register():
                 generate_password_hash(password),
             ),
         )
+
+        # Remember which user has logged in
         user = database.get_data("SELECT * FROM users WHERE username = ?", (username,))
-
         session["user_id"] = user[0][0]
+        session["username"] = user[0][1]
 
+        # Redirect user to home page
         return redirect("/")
+
+    # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("register.html")
+    
+
+@socketio.on("new_message")
+def handle_new_message(message):
+    emit("chat", {"message": message, "user": session["username"]}, broadcast=True)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    socketio.run(app, debug=True)

@@ -51,7 +51,13 @@ def login_required(f):
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    messages = database.get_data(
+        "SELECT username, message FROM chat JOIN users ON chat.user_id = users.id"
+    )
+
+    return render_template(
+        "index.html", messages=messages, username=session["username"]
+    )
 
 
 @socketio.on("connect")
@@ -163,11 +169,23 @@ def register():
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("register.html")
-    
+
 
 @socketio.on("new_message")
 def handle_new_message(message):
+    database.commit(
+        "INSERT INTO chat (user_id, message) VALUES (?, ?)",
+        (
+            session["user_id"],
+            message,
+        ),
+    )
     emit("chat", {"message": message, "user": session["username"]}, broadcast=True)
+
+
+@app.route("/contact_me")
+def contact_me():
+    return render_template("contact-me.html")
 
 
 if __name__ == "__main__":
